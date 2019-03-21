@@ -3,13 +3,49 @@ A super awesome string manipulation library
 """
 import re
 
+class AwesomeStringInputIsNone(Exception): pass
+
 
 def ALLCAPSBRO(s):
-    pass
+    """
+    >>> ALLCAPSBRO('this is a test')
+    'THIS IS A TEST'
+    >>> ALLCAPSBRO()
+    Traceback (most recent call last):
+      ...
+    TypeError: ALLCAPSBRO() missing 1 required positional argument: 's'
+    >>> ALLCAPSBRO()  # doctest: +IGNORE_EXCEPTION_DETAIL
+    Traceback (most recent call last):
+      ...
+    TypeError: <<< anything here, doesn't matter >>>
+    """
+    return s.upper()
 
 
 def StUdLyCaPs(s):
-    pass
+    """
+    >>> StUdLyCaPs('some test string')
+    'SoMe tEsT StRiNg'
+    >>> StUdLyCaPs()  # doctest: +IGNORE_EXCEPTION_DETAIL
+    Traceback (most recent call last):
+    TypeError: <<whatever>>
+    >>> StUdLyCaPs(None)  # doctest: +IGNORE_EXCEPTION_DETAIL
+    Traceback (most recent call last):
+    AwesomeStringInputIsNone: 
+    """
+
+    if s is None:
+        raise AwesomeStringInputIsNone("OH NOES")
+
+    result = []
+    for i in range(0,len(s)):
+        if i % 2 == 0:
+            result.append(s[i].upper())
+        else:
+            result.append(s[i].lower())
+    return ''.join(result)
+
+
 
 
 def CamelCase(s):
@@ -40,6 +76,8 @@ def ap_title(s):
       letters if it is the first or last word in a title.
 
     (source: https://writers.stackexchange.com/a/4622)
+
+    Here's how you use the 'ap_title' function:
 
     >>> ap_title('the the')  # British post-punk band
     'The The'
